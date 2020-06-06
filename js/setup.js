@@ -1,5 +1,7 @@
 'use strict';
 
+var WIZZARDS_NUMBER = 4;
+
 var WIZZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var WIZZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var WIZZARD_COAT_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
@@ -32,12 +34,13 @@ var getWizzards = function (quantity) {
   return wizzardsArr;
 };
 
-var wizzards = getWizzards(4);
+var wizzards = getWizzards(WIZZARDS_NUMBER);
 
-var renderWizzard = function (wizzard) {
-  var wizzardTemplate = document.getElementById('similar-wizard-template')
+var wizzardTemplate = document.getElementById('similar-wizard-template')
     .content
     .querySelector('.setup-similar-item');
+
+var renderWizzard = function (wizzard) {
   var wizzardElement = wizzardTemplate.cloneNode(true);
 
   wizzardElement.querySelector('.setup-similar-label').textContent = wizzard.name;
