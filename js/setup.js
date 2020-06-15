@@ -3,8 +3,8 @@
 /* ========================================
       Constants
 ======================================== */
-
 var WIZARDS_NUMBER = 4;
+
 
 var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
@@ -70,12 +70,14 @@ var openPopup = function () {
   userMenu.classList.remove('hidden');
 
   document.addEventListener('keydown', onPopupEscPress);
+  setupWizardPlayer.addEventListener('click', wizardClickHandler);
 };
 
 var closePopup = function () {
   userMenu.classList.add('hidden');
 
   document.removeEventListener('keydown', onPopupEscPress);
+  setupWizardPlayer.removeEventListener('click', wizardClickHandler);
 };
 
 var wizardClickHandler = function (evt) {
@@ -185,7 +187,6 @@ setupClose.addEventListener('keydown', function (evt) {
   }
 });
 
-setupWizardPlayer.addEventListener('click', wizardClickHandler);
 userNameInput.addEventListener('invalid', userNameInputInvalidHandler);
 userNameInput.addEventListener('input', userNameInputInputHandler);
 
