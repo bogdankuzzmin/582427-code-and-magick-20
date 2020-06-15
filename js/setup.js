@@ -1,8 +1,5 @@
 'use strict';
 
-/* ========================================
-      Constants
-======================================== */
 var WIZARDS_NUMBER = 4;
 
 
@@ -11,10 +8,6 @@ var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', '�
 var WIZARD_COAT_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var WIZARD_EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
 var WIZARD_FIREBALL_COLOR = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
-
-/* ========================================
-      Function declarations
-======================================== */
 
 var getRandomNumber = function (arr) {
   return Math.floor(Math.random() * arr.length);
@@ -37,6 +30,11 @@ var getWizards = function (quantity) {
 };
 
 var renderWizard = function (wizard) {
+  var userMenuWizards = document.querySelector('.setup-similar');
+  userMenuWizards.classList.remove('hidden');
+  var wizardTemplate = document.getElementById('similar-wizard-template')
+    .content
+    .querySelector('.setup-similar-item');
   var wizardElement = wizardTemplate.cloneNode(true);
 
   wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
@@ -96,12 +94,14 @@ var wizardClickHandler = function (evt) {
 var userNameInputInvalidHandler = function () {
   if (userNameInput.validity.valueMissing) {
     userNameInput.setCustomValidity('Обязательное поле');
+  } else if (userNameInput.validity.tooShort) {
+    userNameInput.setCustomValidity('Минимальное значение симовлов - 2');
   } else {
     userNameInput.setCustomValidity('');
   }
 };
 
-var userNameInputInputHandler = function () {
+var userNameInputHandler = function () {
   var valueLength = userNameInput.value.length;
 
   setupWizardForm.reportValidity();
@@ -113,6 +113,31 @@ var userNameInputInputHandler = function () {
   } else {
     userNameInput.setCustomValidity('');
   }
+};
+
+var init = function () {
+  setupOpen.addEventListener('click', function () {
+    openPopup();
+  });
+
+  setupOpen.addEventListener('keydown', function (evt) {
+    if (evt.key === 'Enter') {
+      openPopup();
+    }
+  });
+
+  setupClose.addEventListener('click', function () {
+    closePopup();
+  });
+
+  setupClose.addEventListener('keydown', function (evt) {
+    if (evt.key === 'Enter') {
+      closePopup();
+    }
+  });
+
+  userNameInput.addEventListener('invalid', userNameInputInvalidHandler);
+  userNameInput.addEventListener('input', userNameInputHandler);
 };
 
 var rgbToHex = function (rgb) {
@@ -137,17 +162,6 @@ var rgbToHex = function (rgb) {
   return '#' + r + g + b;
 };
 
-/* ========================================
-      Variables
-======================================== */
-
-var wizardTemplate = document.getElementById('similar-wizard-template')
-    .content
-    .querySelector('.setup-similar-item');
-
-var userMenuWizards = document.querySelector('.setup-similar');
-userMenuWizards.classList.remove('hidden');
-
 var setupWizardForm = document.querySelector('.setup-wizard-form');
 var setupWizardPlayer = document.querySelector('.setup-player');
 var userMenu = document.querySelector('.setup');
@@ -160,38 +174,7 @@ var wizardFireballColorInput = document.querySelector('input[name="fireball-colo
 var userNameInputMinLength = userNameInput.minLength;
 var userNameInputMaxLength = userNameInput.maxLength;
 
-
 var wizards = getWizards(WIZARDS_NUMBER);
 
-/* ========================================
-      EventListeners
-======================================== */
-
-setupOpen.addEventListener('click', function () {
-  openPopup();
-});
-
-setupOpen.addEventListener('keydown', function (evt) {
-  if (evt.key === 'Enter') {
-    openPopup();
-  }
-});
-
-setupClose.addEventListener('click', function () {
-  closePopup();
-});
-
-setupClose.addEventListener('keydown', function (evt) {
-  if (evt.key === 'Enter') {
-    closePopup();
-  }
-});
-
-userNameInput.addEventListener('invalid', userNameInputInvalidHandler);
-userNameInput.addEventListener('input', userNameInputInputHandler);
-
-/* ========================================
-      Execute functions
-======================================== */
-
 addWizards(wizards);
+init();
