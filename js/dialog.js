@@ -12,6 +12,10 @@
 
   var openPopup = function () {
     userMenu.classList.remove('hidden');
+    window.dialogCoords = {
+      x: userMenu.offsetLeft,
+      y: userMenu.offsetTop
+    };
 
     document.addEventListener('keydown', onPopupEscPress);
     setupWizardPlayer.addEventListener('click', window.wizardClickHandler);
@@ -19,6 +23,8 @@
 
   var closePopup = function () {
     userMenu.classList.add('hidden');
+    userMenu.style.left = window.dialogCoords.x + 'px';
+    userMenu.style.top = window.dialogCoords.y + 'px';
 
     document.removeEventListener('keydown', onPopupEscPress);
     setupWizardPlayer.removeEventListener('click', window.wizardClickHandler);
