@@ -57,5 +57,9 @@
   var setupOpen = document.querySelector('.setup-open');
   var setupClose = document.querySelector('.setup-close');
 
+  window.dialog = {
+    onPopupEscPress: onPopupEscPress
+  };
+
   init();
 })();
