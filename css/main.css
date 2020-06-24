@@ -1019,3 +1019,12 @@ input[type=radio]:checked + .review-mark-label
 
     opacity: 0;
 }
+
+@keyframes appear {
+    to { transform: translateY(0); }
+}
+
+@keyframes disappear {
+    from { transform: translateY(0); }
+    to { transform: translateY(-50px); }
+}
