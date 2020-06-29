@@ -27,9 +27,13 @@
     if (evt.target.matches('.wizard-coat')) {
       window.colorize(coat, window.setup.WIZARD_COAT_COLOR);
       wizardCoatColorInput.value = evt.target.style.fill;
+      window.coatColor = window.newColor;
+      window.filter.updateWizards();
     } else if (evt.target.matches('.wizard-eyes')) {
       window.colorize(eyes, window.setup.WIZARD_EYES_COLOR);
       wizardEyesColorInput.value = evt.target.style.fill;
+      window.eyesColor = window.newColor;
+      window.filter.updateWizards();
     } else if (evt.target.matches('.setup-fireball')) {
       window.colorize(fireball, window.setup.WIZARD_FIREBALL_COLOR);
       wizardFireballColorInput.value = rgbToHex(evt.target.style.backgroundColor);
