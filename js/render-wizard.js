@@ -19,8 +19,11 @@
   var renderWizards = function (wizards) {
     var userMenuWizardsList = document.querySelector('.setup-similar-list');
     var fragment = document.createDocumentFragment();
+    var takeNumber = wizards.length > window.setup.WIZARDS_NUMBER ? window.setup.WIZARDS_NUMBER : wizards.length;
 
-    for (var i = 0; i < window.setup.WIZARDS_NUMBER; i++) {
+    userMenuWizardsList.innerHTML = '';
+
+    for (var i = 0; i < takeNumber; i++) {
       fragment.appendChild(renderWizard(wizards[i]));
     }
 
