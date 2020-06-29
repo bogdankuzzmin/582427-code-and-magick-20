@@ -1,6 +1,31 @@
 'use strict';
 
 (function () {
+  var COAT_COLORS = [
+    'rgb(146, 100, 161)',
+    'rgb(215, 210, 55)',
+    'rgb(241, 43, 107)',
+    'rgb(101, 137, 164)',
+    'rgb(0, 0, 0)',
+    'rgb(56, 159, 117)'
+  ];
+
+  var EYES_COLORS = [
+    'red',
+    'yellow',
+    'green',
+    'blue',
+    'green'
+  ];
+
+  var WIZARD_FIREBALL_COLOR = [
+    '#ee4830',
+    '#30a8ee',
+    '#5ce6c0',
+    '#e848d5',
+    '#e6e848'
+  ];
+
   var rgbToHex = function (rgb) {
     var sep = rgb.indexOf(',') > -1 ? ',' : '';
 
@@ -25,17 +50,17 @@
 
   window.wizardClickHandler = function (evt) {
     if (evt.target.matches('.wizard-coat')) {
-      window.colorize(coat, window.setup.WIZARD_COAT_COLOR);
+      window.colorize.colorize(coat, COAT_COLORS);
       wizardCoatColorInput.value = evt.target.style.fill;
-      window.coatColor = window.newColor;
+      window.filter.coatColor = window.colorize.newColor;
       window.filter.updateWizards();
     } else if (evt.target.matches('.wizard-eyes')) {
-      window.colorize(eyes, window.setup.WIZARD_EYES_COLOR);
+      window.colorize.colorize(eyes, EYES_COLORS);
       wizardEyesColorInput.value = evt.target.style.fill;
-      window.eyesColor = window.newColor;
+      window.filter.eyesColor = window.colorize.newColor;
       window.filter.updateWizards();
     } else if (evt.target.matches('.setup-fireball')) {
-      window.colorize(fireball, window.setup.WIZARD_FIREBALL_COLOR);
+      window.colorize.colorize(fireball, WIZARD_FIREBALL_COLOR);
       wizardFireballColorInput.value = rgbToHex(evt.target.style.backgroundColor);
     }
   };
