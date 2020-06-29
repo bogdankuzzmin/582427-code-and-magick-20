@@ -5,12 +5,17 @@
     return arr[Math.floor(arr.length * Math.random())];
   };
 
-  window.colorize = function (evt, colorArr) {
-    window.newColor = getRandomColor(colorArr);
+  var colorize = function (evt, colorArr) {
+    var newColor = getRandomColor(colorArr);
+    window.colorize.newColor = newColor;
     if (evt.tagName.toLowerCase() === 'div') {
-      evt.style.backgroundColor = window.newColor;
+      evt.style.backgroundColor = newColor;
     } else {
-      evt.style.fill = window.newColor;
+      evt.style.fill = newColor;
     }
+  };
+
+  window.colorize = {
+    colorize: colorize
   };
 })();
