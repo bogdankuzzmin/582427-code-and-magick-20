@@ -6,11 +6,11 @@
   };
 
   window.colorize = function (evt, colorArr) {
-    var color = getRandomColor(colorArr);
+    window.newColor = getRandomColor(colorArr);
     if (evt.tagName.toLowerCase() === 'div') {
-      evt.style.backgroundColor = color;
+      evt.style.backgroundColor = window.newColor;
     } else {
-      evt.style.fill = color;
+      evt.style.fill = window.newColor;
     }
   };
 })();
