@@ -1,6 +1,7 @@
 'use strict';
 
 (function () {
+  var MAX_WIZARD_NUMBER = 4;
   var userDialog = document.querySelector('.setup');
 
   var renderWizard = function (wizard) {
@@ -19,7 +20,7 @@
   var renderWizards = function (wizards) {
     var userMenuWizardsList = document.querySelector('.setup-similar-list');
     var fragment = document.createDocumentFragment();
-    var takeNumber = wizards.length > window.setup.WIZARDS_NUMBER ? window.setup.WIZARDS_NUMBER : wizards.length;
+    var takeNumber = wizards.length > MAX_WIZARD_NUMBER ? MAX_WIZARD_NUMBER : wizards.length;
 
     userMenuWizardsList.innerHTML = '';
 
