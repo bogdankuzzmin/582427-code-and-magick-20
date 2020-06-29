@@ -23,7 +23,7 @@
           error = 'Пользователь не авторизован';
           break;
         case 404:
-          error = 'Ничего не найдено';
+          error = '404 | Ничего не найдено';
           break;
 
         default:
@@ -123,8 +123,13 @@
   };
 
   var successHandler = function (loadData) {
-    shuffleArr(loadData);
-    window.renderWizard.renderWizards(loadData);
+    var wizards = loadData;
+
+    window.backend = {
+      wizards: wizards
+    };
+
+    window.filter.updateWizards();
   };
 
   var animateMessageBlock = function () {
@@ -134,17 +139,6 @@
 
   var deleteMessageBlock = function () {
     window.messageBlock.remove();
-  };
-
-  var shuffleArr = function (arr) {
-    for (var i = arr.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * i);
-      var temp = arr[i];
-      arr[i] = arr[j];
-      arr[j] = temp;
-    }
-
-    return arr;
   };
 
   var userDialog = document.querySelector('.setup');
