@@ -16,7 +16,7 @@
 
     if (matches) {
       var reader = new FileReader();
-      
+
       reader.addEventListener('load', function () {
         preview.src = reader.result;
       });
